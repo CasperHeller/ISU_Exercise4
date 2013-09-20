@@ -7,7 +7,8 @@ using namespace std;
 
 void *writer(void* ID); //Prototyper
 
-Vector data;; //Opretter global variabel
+Vector data;; //Opretter global variabler
+int ms;
 
 int main()
 {
@@ -17,6 +18,13 @@ int main()
   {
     cout << "Enter the number of threads you want (1-100): ";
     cin >> numberThreads;
+    cout << endl;
+  }
+  
+  while(ms > 1000 || ms < 1)
+  {
+    cout << "Enter the sleep time for threads in ms (1-1000): ";
+    cin >> ms;
     cout << endl;
   }
   
@@ -52,7 +60,7 @@ void *writer(void* ID) //incrementer shared
     else
       cout << threadID << ": Fail!" << endl;
     
-    sleep(1);
+    usleep(ms*1000);
   }
 
   cout << "Terminating thread: " << threadID << endl;
